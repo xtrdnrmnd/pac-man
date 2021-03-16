@@ -36,7 +36,7 @@ canv.addEventListener('click', function (event) {
         event.y < 320 + buttonH
     ) {
         // Executes if button was clicked!
-        alert('Button was clicked!');
+        location.replace("./gameplay.html")
     }
 });
 
