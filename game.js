@@ -24,6 +24,7 @@ function init() {
 
 var dir = 1; // One move
 var pos = 540; // Start position for the Ghost
+var xPosRedGhost = 540;
 
 function draw() {
     var canv = document.getElementById('myCanvas')
@@ -55,4 +56,4 @@ function draw() {
     window.requestAnimationFrame(draw); // Animation
 }
 
-init() //Calling the init function
+init() //Calling the init
