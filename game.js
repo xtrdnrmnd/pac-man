@@ -1,3 +1,6 @@
+var canv = document.getElementById('myCanvas')
+var ctx = canv.getContext('2d');
+
 // Images
 var backgroundImage = new Image();
 var pacMan = new Image();
@@ -25,6 +28,47 @@ function init() {
 var dir = 1; // One move
 var pos = 540; // Start position for the Ghost
 var xPosRedGhost = 540;
+var pacmanx = 500;
+var pacmany = 32;
+
+document.addEventListener('keydown', keyDownHandler, false);
+var rightPressed = false;
+var leftPressed = false;
+var upPressed = false;
+var downPressed = false;
+
+function keyDownHandler(event) {
+    if (event.keyCode == 39) {
+        rightPressed = true;
+        leftPressed = false;
+        upPressed = false;
+        downPressed = false;
+    }
+    else if (event.keyCode == 37) {
+        leftPressed = true;
+        rightPressed = false;
+        upPressed = false;
+        downPressed = false;
+    }
+    if (event.keyCode == 40) {
+        downPressed = true;
+        rightPressed = false;
+        leftPressed = false;
+        upPressed = false;
+    }
+    else if (event.keyCode == 38) {
+        upPressed = true;
+        rightPressed = false;
+        leftPressed = false;
+        downPressed = false;
+    }
+}
+
+function endGame() {
+    if (pacmanx <= 0 || pacmanx >= canv.width || pacmany <= 0 || pacmany >= canv.height) {
+        location.replace("./gameover.html");
+    }
+}
 
 function draw() {
     var canv = document.getElementById('myCanvas')
@@ -35,11 +79,28 @@ function draw() {
 
     ctx.drawImage(backgroundImage, canv.width / 5, 0, canv.height, canv.height);
 
-    ctx.drawImage(pacMan, canv.width / 4 - 30, 32, ObjDim, ObjDim);
+    ctx.drawImage(pacMan, pacmanx, pacmany, ObjDim, ObjDim);
 
-    ctx.drawImage(redGhost, xPosRedGhost, 300, ObjDim + 15, ObjDim + 15);
+    if (rightPressed) {
+        pacmanx += 5;
+        endGame();
+    }
+    else if (leftPressed) {
+        pacmanx -= 5;
+        endGame();
+    }
+    if (downPressed) {
+        pacmany += 5;
+        endGame();
+    }
+    else if (upPressed) {
+        pacmany -= 5;
+        endGame();
+    }
 
-    if (pos > 800) {
+    ctx.drawImage(redGhost, xPosRedGhost, 285, ObjDim + 15, ObjDim + 15);
+
+    if (pos > 770) {
         dir = -1;
     }
     else if (pos < 540) {

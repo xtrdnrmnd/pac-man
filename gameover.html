@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pac-Man</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1420" height="800" style="border:2px solid #000000; z-index: 1;"></canvas>
+
+    <script>
+        var canv = document.getElementById('myCanvas')
+        var ctx = canv.getContext('2d');
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canv.width, canv.height);
+        var posX = canv.width / 2;
+        ctx.font = '90pt Comic Sans MS';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#FFFF00';
+        ctx.fillText('GAME OVER', posX, 325);
+
+        ctx.font = '45pt Comic Sans MS';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#FFFF00';
+        ctx.fillText('TRY AGAIN', posX, 495);
+
+        canv.addEventListener('click', function (event) {
+            // Control that click event occurred within position of button
+            if (
+                event.x > 540 &&
+                event.x < 540 + 360 &&
+                event.y > 430 &&
+                event.y < 430 + 70
+            ) {
+                // Executes if button was clicked!
+                location.replace("./index.html")
+            }
+        });
+    </script>
+</body>
+
+</html>
