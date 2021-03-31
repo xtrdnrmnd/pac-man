@@ -31,6 +31,9 @@ var xPosRedGhost = 540;
 var pacmanx = 500;
 var pacmany = 32;
 
+var pinkGhostx = canv.width / 4 + 250;
+var pinkGhosty = 390;
+
 document.addEventListener('keydown', keyDownHandler, false);
 var rightPressed = false;
 var leftPressed = false;
@@ -109,7 +112,8 @@ function draw() {
     pos += dir;
     xPosRedGhost = pos;
 
-    ctx.drawImage(pinkGhost, canv.width / 4 + 250, 390, ObjDim, ObjDim);
+    ctx.drawImage(pinkGhost, pinkGhostx, pinkGhosty, ObjDim, ObjDim);
+
     ctx.drawImage(life1, 35, 15, ObjDim + 20, ObjDim + 20);
     ctx.drawImage(life2, 95, 15, ObjDim + 20, ObjDim + 20);
     ctx.drawImage(life3, 155, 15, ObjDim + 20, ObjDim + 20);

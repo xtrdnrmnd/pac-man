@@ -129,7 +129,9 @@ canv.addEventListener('click', function (event) {
         event.y < 520 + buttonH
     ) {
         // Executes if button was clicked!
-        alert('Button 3 was clicked!');
+        // Opens a blank url in the current window 
+        // and then closes the current window
+        window.open('', '_self').close();
     }
 });
 
