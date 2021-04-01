@@ -135,11 +135,17 @@ canv.addEventListener('click', function (event) {
     }
 });
 
-var audioSong = new Audio('');
+var audioSong = new Audio('audio/song1.mp3');
 audioSong.loop = true;
 
 function volume() {
     document.getElementById("volume").style.visibility = "hidden";
     document.getElementById("volume2").style.visibility = "visible";
     audioSong.play();
+}
+
+function volume2() {
+    document.getElementById("volume2").style.visibility = "hidden";
+    document.getElementById("volume").style.visibility = "visible";
+    audioSong.pause();
 }

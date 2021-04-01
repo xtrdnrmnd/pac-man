@@ -91,9 +91,9 @@ function draw() {
     ctx.drawImage(pacMan, pacmanx, pacmany, ObjDim, ObjDim);
 
     //play audio in the loop 
-    var audio = new Audio('audio/song1.mp3');
-    audio.loop = true;
-    audio.play();
+    //var audio = new Audio('audio/song1.mp3');
+    //audio.loop = true;
+    //audio.play();
 
     //Keyboard movement
     if (rightPressed) {
