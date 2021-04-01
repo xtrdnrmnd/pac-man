@@ -135,7 +135,11 @@ canv.addEventListener('click', function (event) {
     }
 });
 
-// Volume image
-var imageVolume = new Image();
-imageVolume.src = "Obrazky/volume-off.png"
-imageVolume.onload = function () { ctx.drawImage(imageVolume, 642, 618, 156, 149,); }
+var audioSong = new Audio('');
+audioSong.loop = true;
+
+function volume() {
+    document.getElementById("volume").style.visibility = "hidden";
+    document.getElementById("volume2").style.visibility = "visible";
+    audioSong.play();
+}

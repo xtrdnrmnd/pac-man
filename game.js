@@ -28,11 +28,11 @@ function init() {
 var dir = 1; // One move
 var pos = 540; // Start position for the Ghost
 var xPosRedGhost = 540;
-var pacmanx = 500;
-var pacmany = 32;
+var pacmanx = 500; // Start x dimension for Pac-Man
+var pacmany = 32; // Start y dimension for Pac-Man
 
-var pinkGhostx = canv.width / 4 + 250;
-var pinkGhosty = 390;
+var pinkGhostx = canv.width / 4 + 250; // x dimension for the Pink Ghost
+var pinkGhosty = 390; // y dimension for the Pink Ghost
 
 document.addEventListener('keydown', keyDownHandler, false);
 var rightPressed = false;
@@ -67,37 +67,49 @@ function keyDownHandler(event) {
     }
 }
 
+// When Pac-Man reaches the end of the board, the game finishes
 function endGame() {
     if (pacmanx <= 0 || pacmanx >= canv.width || pacmany <= 0 || pacmany >= canv.height) {
         location.replace("./gameover.html");
     }
 }
 
+// Function to draw elements and the move
 function draw() {
+    // Setting canvas
     var canv = document.getElementById('myCanvas')
     var ctx = canv.getContext('2d');
 
+    // Fill canvas with black background
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canv.width, canv.height);
 
+    // Adding the board
     ctx.drawImage(backgroundImage, canv.width / 5, 0, canv.height, canv.height);
 
+    // Pac-Man character
     ctx.drawImage(pacMan, pacmanx, pacmany, ObjDim, ObjDim);
 
+    //play audio in the loop 
+    var audio = new Audio('audio/song1.mp3');
+    audio.loop = true;
+    audio.play();
+
+    //Keyboard movement
     if (rightPressed) {
-        pacmanx += 5;
+        pacmanx += 2;
         endGame();
     }
     else if (leftPressed) {
-        pacmanx -= 5;
+        pacmanx -= 2;
         endGame();
     }
     if (downPressed) {
-        pacmany += 5;
+        pacmany += 2;
         endGame();
     }
     else if (upPressed) {
-        pacmany -= 5;
+        pacmany -= 2;
         endGame();
     }
 

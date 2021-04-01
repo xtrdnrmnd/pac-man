@@ -9,14 +9,29 @@
     <style>
         body {
             margin: 0;
+            background-color: black;
+        }
+
+        .volume {
+            position: absolute;
+            left: 642px;
+            top: 618px;
+            width: 156px;
+            height: 149px;
+        }
+
+        #volume2 {
+            visibility: hidden;
         }
     </style>
 </head>
 
 <body>
-    <canvas id="myCanvas" width="1420" height="800" style="border:2px solid #000000; z-index: 1;"></canvas>
+    <canvas id="myCanvas" width="1420" height="600" style="border:2px solid #000000; z-index: 1;"></canvas>
 
     <script type="text/javascript" src="main.js"></script>
+    <img src="Obrazky/volume-off.png" class="volume" id="volume" onclick="volume()">
+    <img src="Obrazky/volume-on.png" class="volume" id="volume2" onclick="volume2()">
 </body>
 
 </html>
