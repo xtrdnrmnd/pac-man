@@ -97,3 +97,47 @@ function volume2() {
     document.getElementById("volume").style.visibility = "visible";
     audioSong.pause();
 }
+
+
+// INSTRUCTIONS CANVAS
+var cont = document.getElementById('instruction').getContext('2d');
+
+var buttonLeft = new Image();
+buttonLeft.src = "Obrazky/button-left.png"
+buttonLeft.onload = function () { cont.drawImage(buttonLeft, 40, 250, 100, 100); }
+
+var buttonRight = new Image();
+buttonRight.src = "Obrazky/button-right.png"
+buttonRight.onload = function () { cont.drawImage(buttonRight, 500, 250, 100, 100); }
+
+var buttonUp = new Image();
+buttonUp.src = "Obrazky/button-up.png"
+buttonUp.onload = function () { cont.drawImage(buttonUp, 270, 140, 100, 100); }
+
+var buttonDown = new Image();
+buttonDown.src = "Obrazky/button-down.png"
+buttonDown.onload = function () { cont.drawImage(buttonDown, 270, 360, 100, 100); }
+
+var escapeButton = new Image();
+escapeButton.src = "Obrazky/escape-button.png"
+escapeButton.onload = function () { cont.drawImage(escapeButton, 780, 140, 100, 100); }
+
+var tabButton = new Image();
+tabButton.src = "Obrazky/tab-button.png"
+tabButton.onload = function () { cont.drawImage(tabButton, 780, 300, 100, 100); }
+
+
+cont.font = '20pt Comic Sans MS';
+cont.textAlign = 'center';
+cont.fillStyle = '#000';
+
+cont.fillText('Move left', 90, 240);
+cont.fillText('Move right', 550, 240);
+cont.fillText('Move up', 320, 265);
+cont.fillText('Move down', 320, 350);
+
+cont.fillText('Quit the game', 840, 265);
+cont.fillText('Turn music on/off', 840, 425);
+
+cont.font = '50pt Comic Sans MS';
+cont.fillText('Instructions', 500, 60);

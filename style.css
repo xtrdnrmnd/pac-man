@@ -17,7 +17,7 @@ body {
 
 #instruction {
     visibility: hidden;
-    left: 20%;
+    left: 200px;
     top: 300px;
     position: absolute;
     background-color: #FFFF00;
