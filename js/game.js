@@ -69,7 +69,7 @@ function keyDownHandler(event) {
 
 // When Pac-Man reaches the end of the board, the game finishes
 function endGame() {
-    if (pacmanx <= 0 || pacmanx >= canv.width || pacmany <= 0 || pacmany >= canv.height) {
+    if (pacmanx <= 300 || pacmanx >= (canv.width - 400) || pacmany <= 0 || pacmany >= canv.height) {
         location.replace("./gameover.html");
     }
 }
