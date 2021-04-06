@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    background-color: black;
+}
+
+.volume {
+    position: absolute;
+    left: 642px;
+    top: 618px;
+    width: 156px;
+    height: 149px;
+}
+
+#volume2 {
+    visibility: hidden;
+}
+
+#instruction {
+    visibility: hidden;
+    left: 20%;
+    top: 300px;
+    position: absolute;
+    background-color: #FFFF00;
+    z-index: 1;
+}
