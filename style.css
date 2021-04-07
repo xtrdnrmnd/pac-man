@@ -32,3 +32,18 @@ body {
     top: 0;
     left: 0;
 }
+
+#gameOver, #playAgain {
+    color: #FFFF00;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 95pt;
+    position: absolute;
+    left: 360px;
+    top: 60px;
+}
+
+#playAgain {
+    left: 510px;
+    top: 280px;
+    font-size: 70pt;
+}

@@ -156,7 +156,7 @@ canv.addEventListener('click', function (event) {
             }
 
             ctxGame.drawImage(redGhost, xPosRedGhost, 285, ObjDim + 15, ObjDim + 15);
-
+            //Basic Red Ghost movement
             if (pos > 770) {
                 dir = -1;
             }
