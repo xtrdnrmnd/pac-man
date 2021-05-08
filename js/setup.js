@@ -1,4 +1,4 @@
-//Array number definitions
+s//Array number definitions
 export const List = [
     // 0 == dots
     object_type.dot,

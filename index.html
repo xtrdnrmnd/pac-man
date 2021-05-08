@@ -2,28 +2,26 @@
 <html>
 
 <head>
+
+    <link rel="icon" href="Obrazky/Pac-Man/pac-man-1.png" type="image/icon">
+    <title>Pac-Man</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-    <title>Pac-Man</title>
+
+    <!-- JavaScript -->
+    <script src="js/index.js"> </script>
+
 </head>
 
 <body>
-    <!-- Main Menu Canvas -->
-    <canvas id="myCanvas" width="1420" height="600"></canvas>
-
-    <!-- Instruction canvas -->
-    <canvas id="instruction" width="1000" height="500"></canvas>
-
-    <!-- Gameplay canvas-->
-    <canvas id="game" width="1420" height="780"></canvas>
-
-    <!-- Volume on/off -->
-    <img src="Obrazky/volume-off.png" class="volume" id="volume" onclick="volume()">
-    <img src="Obrazky/volume-on.png" class="volume" id="volume2" onclick="volume2()">
-
-    <script type="text/javascript" src="js/main.js"></script>
+    <p>
+        <canvas id="gameField" width="1440" height="600"></canvas>
+    </p>
 </body>
 
 </html>
