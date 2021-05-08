@@ -15,13 +15,30 @@
 
     <!-- JavaScript -->
     <script src="js/index.js"> </script>
-
 </head>
 
 <body>
-    <p>
-        <canvas id="gameField" width="1440" height="600"></canvas>
-    </p>
+
+    <div class="container">
+
+        <!-- Game logo -->
+        <img src="Obrazky/main-page-logo.png" id="main-page-logo">
+
+        <!-- Main menu buttons -->
+        <button id="startButton" class="button">START</button>>
+        <button id="instrButton" class="button">INSTRUCTIONS</button>
+        <button id="quitButton" class="button">QUIT</button>
+
+        <!-- Music button -->
+        <button class="button" id="musicButton"></button>
+    </div>
+
+    <!-- Game field as a canvas -->
+    <canvas id="gameField" width=1440 height=900></canvas>
+
+    <!-- Instructions -->
+    <canvas id="instructions" width=1000 height=500></canvas>
+
 </body>
 
 </html>

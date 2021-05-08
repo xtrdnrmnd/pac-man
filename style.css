@@ -1,4 +1,72 @@
 body {
     margin: 0;
     background-color: black;
+    width: 100vw;
+    height: 100vw;
+    overflow: hidden;
+    background-image: url("./Obrazky/background.jpg");
+}
+
+.container {
+    width: 100vw;
+    height: 100vw;
+    text-align: center;
+}
+
+.container .button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color: #FFFF00;
+    font-family: 'Comic Sans MS';
+    font-size: 50pt;
+    display: block;
+    margin: auto;
+    white-space: nowrap;
+    transition: 0.3s;
+    text-shadow: 1px 1px 0 black, 1px 2px 0 black, 1px 3px 0 black, 1px 4px 0 black,
+      1px 5px 0 black, 1px 6px 0 black, 1px 7px 0 black, 1px 8px 0 black,
+      5px 13px 15px black;
+}
+
+.button:hover {
+    text-decoration: underline;
+    transition: 0.3s;
+    text-shadow: 1px -1px 0 black, 1px -2px 0 black, 1px -3px 0 black,
+    1px -4px 0 black, 1px -5px 0 black, 1px -6px 0 black, 1px -7px 0 black,
+    1px -8px 0 black, 5px -13px 15px black, 5px -13px 25px #808080;
+}
+
+.container #main-page-logo {
+    margin-top: 20px;
+}
+
+.container #musicButton {
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    background-image: url("./Obrazky/Volume/volume-off.png");
+}
+
+#gameField {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:100;
+    visibility: hidden;
+    background-color:black;  
+    height: 900px;
+    width: 1440px;  
+}
+
+#instructions {
+    position:absolute;
+    top:300px;
+    left:220px;
+    z-index:100;
+    visibility: hidden;
+    background-color:black;    
 }
