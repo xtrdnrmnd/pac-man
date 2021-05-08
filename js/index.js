@@ -2,6 +2,18 @@
 
 
 //Model
+//function responsible for the music    
+play = function () {
+    sound.play();
+    document.getElementById("musicButton").style.backgroundImage = "URL('./Obrazky/Volume/volume-on.png')";
+    index = 1;
+}
+stop = function () {
+    sound.pause();
+    document.getElementById("musicButton").style.backgroundImage = "URL('./Obrazky/Volume/volume-off.png')";
+    index = 0;
+}
+
 
 //View
 // Start game
@@ -75,7 +87,6 @@ instructions = function () {
                 document.getElementById("instructions").style.visibility = "hidden";
             }
         });
-
     });
 }
 // Quit the app
@@ -89,20 +100,39 @@ quit = function () {
     });
 }
 
+//Sound switch function
+soundSwitch = function () {
+    musicSwitch.addEventListener('click', function (event) {
+        if (index == 0) {
+            play();
+        }
+        else {
+            stop();
+        }
+    });
+}
+
 
 //Controller
 
 
 //iniitialize
 window.onload = function () {
+
     startButton = document.getElementById("startButton");
     instrButton = document.getElementById("instrButton");
     quitButton = document.getElementById("quitButton");
+    musicSwitch = document.getElementById("musicButton");
+
     canv = document.getElementById("gameField");
     ctx = canv.getContext("2d");
+    sound = new Audio('./audio/music.mp3');
+    sound.loop = true;
+    index = 0;
 
     startGame();
     instructions();
     quit();
+    soundSwitch();
 }
 
