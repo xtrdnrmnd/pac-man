@@ -150,7 +150,7 @@ function soundSwitch() {
 //Controller
 function startGameCont() {
     var pacMan = new Image();
-    pacMan.src = "./Obrazky/Paac-Man/pac-man-1.png"
+    pacMan.src = "./Obrazky/Pac-Man/pac-man-1.png"
     var pacmanx = 500; // Start x dimension for Pac-Man
     var pacmany = 32; // Start y dimension for Pac-Man
     document.addEventListener('keydown', keyDownHandler, false);
