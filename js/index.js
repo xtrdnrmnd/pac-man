@@ -8,7 +8,6 @@ import Player from './player.js';
 
 // DOM elements
 const gameGrid = document.querySelector("#gameField");
-const scoreTable = document.querySelector("#score");
 const musicSwitch = document.querySelector("#musicButton");
 
 const ctx = gameGrid.getContext("2d");
@@ -150,22 +149,49 @@ function soundSwitch() {
 
 //Controller
 function startGameCont() {
-    gameWin = false;
-    powerPillActive = false;
-    score = 0;
+    var pacMan = new Image();
+    pacMan.src = "./Obrazky/Paac-Man/pac-man-1.png"
+    var pacmanx = 500; // Start x dimension for Pac-Man
+    var pacmany = 32; // Start y dimension for Pac-Man
+    document.addEventListener('keydown', keyDownHandler, false);
+    var rightPressed = false;
+    var leftPressed = false;
+    var upPressed = false;
+    var downPressed = false;
+    ctx.drawImage(pacMan, pacmanx, pacmany, 20, 20);
 
-    const pacman = new Player(2, 620, 469);
-    ctx.drawImage(pacmanPic, , 469, 24, 24);
+    function keyDownHandler(event) {
+        if (event.keyCode == 39) {
+            rightPressed = true;
+            leftPressed = false;
+            upPressed = false;
+            downPressed = false;
+        }
+        else if (event.keyCode == 37) {
+            leftPressed = true;
+            rightPressed = false;
+            upPressed = false;
+            downPressed = false;
+        }
+        if (event.keyCode == 40) {
+            downPressed = true;
+            rightPressed = false;
+            leftPressed = false;
+            upPressed = false;
+        }
+        else if (event.keyCode == 38) {
+            upPressed = true;
+            rightPressed = false;
+            leftPressed = false;
+            downPressed = false;
+        }
+    }
+    // When Pac-Man reaches the end of the board, the game finishes
+    function endGame() {
+        if (pacmanx <= 300 || pacmanx >= (canvGame.width - 400) || pacmany <= 0 || pacmany >= canvGame.height) {
 
-    document.addEventListener('keydown', (e) =>
-        pacman.handleKeyInput(e, gameField.objectExist.bind(gameField))
-    );
-
-    timer = setInterval(() => gameLoop(pacman), GLOBAL_SPEED);
-}
-
-function gameLoop(pacman, ghosts) {
-    gameField.moveCharacter(pacman);
+        }
+    }
 }
 
 //iniitialize
