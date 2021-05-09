@@ -20,7 +20,6 @@ const gameField = GameField.createGameField(gameGrid, WALLS);
 const sound = new Audio('./audio/music.mp3');
 sound.loop = true;
 
-
 // Initial setup
 let score = 0;
 let timer = null;
@@ -28,6 +27,8 @@ let gameWin = false;
 let powerPillActive = false;
 let powerPillTimer = null;
 let index = 0;
+let PacManStartx = 620;
+let PacManstarty = 469;
 
 // Images
 const pacmanPic = new Image();
@@ -65,7 +66,6 @@ instructions = function () {
         var ctx2 = inst.getContext("2d");
         inst.style.visibility = "visible";
 
-
         var buttonLeft = new Image();
         buttonLeft.src = "./Obrazky/Instructions/button-left.png";
         buttonLeft.onload = function () { ctx2.drawImage(buttonLeft, 40, 250, 100, 100); }
@@ -90,7 +90,6 @@ instructions = function () {
         var tabButton = new Image();
         tabButton.src = "./Obrazky/Instructions/tab-button.png"
         tabButton.onload = function () { ctx2.drawImage(tabButton, 780, 300, 100, 100); }
-
 
         ctx2.font = '20pt Comic Sans MS';
         ctx2.textAlign = 'center';
@@ -156,7 +155,7 @@ function startGameCont() {
     score = 0;
 
     const pacman = new Player(2, 620, 469);
-    ctx.drawImage(pacmanPic, 620, 469, 24, 24);
+    ctx.drawImage(pacmanPic, , 469, 24, 24);
 
     document.addEventListener('keydown', (e) =>
         pacman.handleKeyInput(e, gameField.objectExist.bind(gameField))
@@ -172,13 +171,8 @@ function gameLoop(pacman, ghosts) {
 //iniitialize
 window.onload = function () {
 
-    //startButton = document.getElementById("startButton");
     instrButton = document.getElementById("instrButton");
     quitButton = document.getElementById("quitButton");
-    //musicSwitch = document.getElementById("musicButton");
-
-    //gameGrid = document.getElementById("gameField");
-
 
     startGame();
     instructions();
