@@ -4,11 +4,14 @@ import { OBJECT_TYPE } from './setup.js';
 
 //Classes import
 import GameField from './playing_field.js';
+import Player from './player.js';
 
 // DOM elements
 const gameGrid = document.querySelector("#gameField");
 const scoreTable = document.querySelector("#score");
 const musicSwitch = document.querySelector("#musicButton");
+
+const ctx = gameGrid.getContext("2d");
 
 // Game constants
 const POWER_PILL_TIME = 10000; //ms
@@ -22,9 +25,13 @@ sound.loop = true;
 let score = 0;
 let timer = null;
 let gameWin = false;
-let gamePillActive = false;
+let powerPillActive = false;
 let powerPillTimer = null;
 let index = 0;
+
+// Images
+const pacmanPic = new Image();
+pacmanPic.src = "./Obrazky/Pac-Man/pac-man-1.png";
 
 //Model
 
@@ -47,6 +54,7 @@ stop = function () {
 function startGame() {
     startButton.addEventListener('click', function (event) {
         gameGrid.style.visibility = "visible";
+        startGameCont();
     });
 }
 
@@ -141,9 +149,25 @@ function soundSwitch() {
     });
 }
 
-
 //Controller
+function startGameCont() {
+    gameWin = false;
+    powerPillActive = false;
+    score = 0;
 
+    const pacman = new Player(2, 620, 469);
+    ctx.drawImage(pacmanPic, 620, 469, 24, 24);
+
+    document.addEventListener('keydown', (e) =>
+        pacman.handleKeyInput(e, gameField.objectExist.bind(gameField))
+    );
+
+    timer = setInterval(() => gameLoop(pacman), GLOBAL_SPEED);
+}
+
+function gameLoop(pacman, ghosts) {
+    gameField.moveCharacter(pacman);
+}
 
 //iniitialize
 window.onload = function () {
@@ -154,7 +178,7 @@ window.onload = function () {
     //musicSwitch = document.getElementById("musicButton");
 
     //gameGrid = document.getElementById("gameField");
-    const ctx = gameGrid.getContext("2d");
+
 
     startGame();
     instructions();

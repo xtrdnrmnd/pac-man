@@ -1,5 +1,5 @@
-export const GRID_SIZE = 24 // Number of columns in the GRID
-export const CELL_SIZE = 24 // Size of each cell in the GRID
+export const GRID_SIZE = 26 // Number of columns in the GRID
+export const CELL_SIZE = 26 // Size of each cell in the GRID
 
 export const DIRECTIONS = {
     ArrowLeft: {
@@ -20,7 +20,7 @@ export const DIRECTIONS = {
         movement: 1,
         rotation: 0
     },
-    ArrowUp: {
+    ArrowDown: {
         code: 40,
         movement: GRID_SIZE,
         rotation: 90

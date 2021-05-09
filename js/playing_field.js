@@ -1,11 +1,10 @@
 import { GRID_SIZE, CELL_SIZE, OBJECT_TYPE, CLASS_LIST } from './setup.js'
 
 var START_POSX = 360; // Start of the grid x
-var START_POSY = 10; // Start of the grid y
+var START_POSY = 0; // Start of the grid y
 var cnv = document.getElementById("gameField");
 var ctx = cnv.getContext("2d");
 var stpx = START_POSX;
-var stpy = START_POSX;
 var count = 0;
 
 class GameField {
@@ -41,14 +40,14 @@ class GameField {
                 if (square == 0) {
                     ctx.strokeStyle = "white";
                     ctx.beginPath();
-                    ctx.arc(stpx + 12, START_POSY + 12, 1, 0, 2 * Math.PI);
+                    ctx.arc(stpx + 12, START_POSY + 13, 1, 0, 2 * Math.PI);
                     ctx.stroke();
                 }
                 if (square == 9) {
-                    ctx.strokeStyle = "#FFFF00";
+                    ctx.strokeStyle = "white";
                     ctx.beginPath();
 
-                    ctx.arc(stpx + 12, START_POSY + 12, 4, 0, 2 * Math.PI);
+                    ctx.arc(stpx + 12, START_POSY + 13, 5, 0, 2 * Math.PI);
                     ctx.stroke();
                 }
             }
@@ -65,19 +64,12 @@ class GameField {
                 if (square == 0) {
                     ctx.strokeStyle = "white";
                     ctx.beginPath();
-                    ctx.arc(stpx + 12, START_POSY + 12, 1, 0, 2 * Math.PI);
+                    ctx.arc(stpx + 12, START_POSY + 13, 1, 0, 2 * Math.PI);
                     ctx.stroke();
                 }
             }
             stpx += GRID_SIZE;
             count++;
-
-
-            const rect = document.createElement('rect'); // create a new div on each element
-            rect.classList.add('square', CLASS_LIST[square]); // make it a square
-            rect.style.cssText = 'width: ${CELL_SIZE}px; heigth: ${CELL_SIZE}px;';
-            this.DOMGrid.appendChild(rect);
-            this.grid.push(rect); // add to the grid array
 
             //Checking if the current position has the dot, and if so adding +1 to the dot count var
             if (CLASS_LIST[square] === OBJECT_TYPE.DOT) this.dotCount++;
@@ -104,14 +96,32 @@ class GameField {
         this.grid[pos].style.transform = 'rotate(${deg}deg)';
     }
 
+    // Method to move the characters(ghosts and pacman)
+    moveCharacter(character) {
+        if (character.shouldMove()) {
+            const { nextMovePosx, nextMovePosy, direction } = character.getNextMove(
+                this.objectExist.bind(this)
+            );
+            const { classesToRemove, classesToAdd } = character.makeMove();
+
+            if (character.rotation && nextMovePosx !== character.posx && nextMovePosy !== character.posy) {
+                this.rotateDiv(nextMovePosx, nextMovePosy, character.dir.rotation);
+                this.rotateDiv(character.posx, character.posy, 0);
+            }
+
+            this.removeObject(character.posx, character.posy, classesToRemove)
+            this.addObject(nextMovePosx, nextMovePosy, classesToAdd);
+
+            character.setNewPos(nextMovePosx, nextMovePosy, direction);
+        }
+    }
+
     // use for initializing the class(create instance of the class)
     static createGameField(DOMGrid, level) {
         const board = new this(DOMGrid);
         board.createGrid(level);
         return board;
     }
-
-    // Method to move the characters
 }
 
 // To use "import" we need to export the class 
