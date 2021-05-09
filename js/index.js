@@ -1,13 +1,40 @@
 // Using the MVC model to build the structure
+import { WALLS } from './setup.js';
+import { OBJECT_TYPE } from './setup.js';
 
+//Classes import
+import GameField from './playing_field.js';
+
+// DOM elements
+const gameGrid = document.querySelector("#gameField");
+const scoreTable = document.querySelector("#score");
+const musicSwitch = document.querySelector("#musicButton");
+
+// Game constants
+const POWER_PILL_TIME = 10000; //ms
+const GLOBAL_SPEED = 80; //ms
+const gameField = GameField.createGameField(gameGrid, WALLS);
+const sound = new Audio('./audio/music.mp3');
+sound.loop = true;
+
+
+// Initial setup
+let score = 0;
+let timer = null;
+let gameWin = false;
+let gamePillActive = false;
+let powerPillTimer = null;
+let index = 0;
 
 //Model
+
 //function responsible for the music    
-play = function () {
+function playMusic() {
     sound.play();
     document.getElementById("musicButton").style.backgroundImage = "URL('./Obrazky/Volume/volume-on.png')";
     index = 1;
 }
+
 stop = function () {
     sound.pause();
     document.getElementById("musicButton").style.backgroundImage = "URL('./Obrazky/Volume/volume-off.png')";
@@ -17,11 +44,12 @@ stop = function () {
 
 //View
 // Start game
-startGame = function () {
+function startGame() {
     startButton.addEventListener('click', function (event) {
-        canv.style.visibility = "visible";
+        gameGrid.style.visibility = "visible";
     });
 }
+
 // Instructions
 instructions = function () {
     instrButton.addEventListener('click', function (event) {
@@ -89,8 +117,9 @@ instructions = function () {
         });
     });
 }
+
 // Quit the app
-quit = function () {
+function quit() {
     quitButton.addEventListener('click', function (event) {
         if (confirm('Are you sure you want to quit the game?')) {
             window.open('', '_self').close();
@@ -101,10 +130,10 @@ quit = function () {
 }
 
 //Sound switch function
-soundSwitch = function () {
+function soundSwitch() {
     musicSwitch.addEventListener('click', function (event) {
         if (index == 0) {
-            play();
+            playMusic();
         }
         else {
             stop();
@@ -119,16 +148,13 @@ soundSwitch = function () {
 //iniitialize
 window.onload = function () {
 
-    startButton = document.getElementById("startButton");
+    //startButton = document.getElementById("startButton");
     instrButton = document.getElementById("instrButton");
     quitButton = document.getElementById("quitButton");
-    musicSwitch = document.getElementById("musicButton");
+    //musicSwitch = document.getElementById("musicButton");
 
-    canv = document.getElementById("gameField");
-    ctx = canv.getContext("2d");
-    sound = new Audio('./audio/music.mp3');
-    sound.loop = true;
-    index = 0;
+    //gameGrid = document.getElementById("gameField");
+    const ctx = gameGrid.getContext("2d");
 
     startGame();
     instructions();

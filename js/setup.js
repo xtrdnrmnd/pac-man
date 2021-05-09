@@ -1,31 +1,76 @@
-s//Array number definitions
-export const List = [
+export const GRID_SIZE = 24 // Number of columns in the GRID
+export const CELL_SIZE = 24 // Size of each cell in the GRID
+
+export const DIRECTIONS = {
+    ArrowLeft: {
+        code: 37,
+        movement: -1,
+        rotation: 180
+    },
+    ArrowUp: {
+        // Key code on the keyboard
+        code: 38,
+        // In which direction 
+        movement: -GRID_SIZE,
+        // Degrees from the start position
+        rotation: 270
+    },
+    ArrowRight: {
+        code: 39,
+        movement: 1,
+        rotation: 0
+    },
+    ArrowUp: {
+        code: 40,
+        movement: GRID_SIZE,
+        rotation: 90
+    },
+}
+
+export const OBJECT_TYPE = {
+    DOT: 'dot',
+    WALL: 'wall',
+    BLANK: 'blank',
+    RED: 'red',
+    PINK: 'pink',
+    BLUE: 'blue',
+    ORANGE: 'orange',
+    PACMAN: 'pacman',
+    GH_AREA: 'area',
+    BOOST: 'boost'
+}
+
+
+//Array number definitions
+export const CLASS_LIST = [
     // 0 == dots
-    object_type.dot,
+    OBJECT_TYPE.DOT,
     // 1 == walls
-    object_type.wall,
+    OBJECT_TYPE.WALL,
     // 2 == blank
-    object_type.blank,
+    OBJECT_TYPE.BLANK,
     // 3 == red Ghost
-    object_type.red,
+    OBJECT_TYPE.RED,
     // 4 == pink Ghost
-    object_type.pink,
+    OBJECT_TYPE.PINK,
     // 5 == blue Ghost
-    object_type.blue,
+    OBJECT_TYPE.BLUE,
     // 6 == orange Ghost
-    object_type.orange,
+    OBJECT_TYPE.ORANGE,
     // 7 == Pac-Man
-    object_type.pacman,
+    OBJECT_TYPE.PACMAN,
     // 8 == Ghost area
-    object_type.gh_lace
+    OBJECT_TYPE.GH_AREA,
+    // 9 = Extra boost
+    OBJECT_TYPE.BOOST
 ];
 
-//The gameplay field as an array
-export const Walls = [
+//The gameplay field grid as an array
+export const WALLS = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
     1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
-    1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
+    1, 9, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 9, 1,
     1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
     1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1,
@@ -34,18 +79,18 @@ export const Walls = [
     1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1,
     2, 2, 2, 2, 2, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2,
     2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 8, 8, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2,
     1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 8, 8, 8, 8, 8, 8, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 8, 8, 8, 8, 8, 8, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 8, 8, 8, 8, 8, 8, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1,
     2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2,
     2, 2, 2, 2, 2, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 2, 2, 2, 2, 2,
     1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
     1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
     1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1,
-    1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1,
+    1, 9, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 9, 1,
     1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1,
     1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1,
