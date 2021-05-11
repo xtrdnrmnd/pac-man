@@ -4,7 +4,6 @@ import { OBJECT_TYPE } from './setup.js';
 
 //Classes import
 import GameField from './playing_field.js';
-import Player from './player.js';
 
 // DOM elements
 const gameGrid = document.querySelector("#gameField");
@@ -149,49 +148,10 @@ function soundSwitch() {
 
 //Controller
 function startGameCont() {
-    var pacMan = new Image();
-    pacMan.src = "./Obrazky/Pac-Man/pac-man-1.png"
-    var pacmanx = 500; // Start x dimension for Pac-Man
-    var pacmany = 32; // Start y dimension for Pac-Man
-    document.addEventListener('keydown', keyDownHandler, false);
-    var rightPressed = false;
-    var leftPressed = false;
-    var upPressed = false;
-    var downPressed = false;
-    ctx.drawImage(pacMan, pacmanx, pacmany, 20, 20);
-
-    function keyDownHandler(event) {
-        if (event.keyCode == 39) {
-            rightPressed = true;
-            leftPressed = false;
-            upPressed = false;
-            downPressed = false;
-        }
-        else if (event.keyCode == 37) {
-            leftPressed = true;
-            rightPressed = false;
-            upPressed = false;
-            downPressed = false;
-        }
-        if (event.keyCode == 40) {
-            downPressed = true;
-            rightPressed = false;
-            leftPressed = false;
-            upPressed = false;
-        }
-        else if (event.keyCode == 38) {
-            upPressed = true;
-            rightPressed = false;
-            leftPressed = false;
-            downPressed = false;
-        }
-    }
-    // When Pac-Man reaches the end of the board, the game finishes
-    function endGame() {
-        if (pacmanx <= 300 || pacmanx >= (canvGame.width - 400) || pacmany <= 0 || pacmany >= canvGame.height) {
-
-        }
-    }
+    var pacman = new Pacman();
+    pacman.initPacman();
+    pacman.drawPacman();
+    pacman.move();
 }
 
 //iniitialize
