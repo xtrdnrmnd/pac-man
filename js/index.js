@@ -82,7 +82,7 @@ function startGameCont() {
 
   const ghosts = [
     new Ghost(5, 188, OBJECT_TYPE.PINKGHOST),
-    new Ghost(4, 209, OBJECT_TYPE.REDGHOST),
+    new Ghost(4, 208, OBJECT_TYPE.REDGHOST),
     new Ghost(3, 230, OBJECT_TYPE.BLUEGHOST),
     new Ghost(2, 251, OBJECT_TYPE.ORANGEGHOST)
   ];
