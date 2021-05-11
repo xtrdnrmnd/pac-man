@@ -1,21 +1,12 @@
 // module import
-import { OBJECT_TYPE } from './setup.js';
+import { OBJECT_TYPE, SOUND, POWER_PILL_TIME, GLOBAL_SPEED, gameGrid, scoreTable, startButton, musicSwitch } from './setup.js';
 import { GRID } from './setup.js';
-import { randomMovement } from './ghostmoves.js';
+
+
 // Classes import
 import PlayingField from './PlayingField.js';
 import Player from './Player.js';
 import Ghost from './Ghost.js';
-// Dom Elements
-const gameGrid = document.querySelector('#gameField');
-const scoreTable = document.querySelector('#currentScore');
-const startButton = document.querySelector('#startButton');
-const musicSwitch = document.querySelector("#musicButton");
-
-// Game constants
-const POWER_PILL_TIME = 10000; // ms
-const GLOBAL_SPEED = 80; // ms
-const sound = new Audio('./audio/music.mp3');
 
 // Initial setup
 let gameBoard = null;
@@ -25,8 +16,6 @@ let gameWin = false;
 let powerPillActive = false;
 let powerPillTimer = null;
 let index = 0;
-
-
 
 
 
@@ -239,7 +228,7 @@ function gameLoop(pacman, ghosts) {
     // Remove a dot
     gameBoard.dotCount--;
     // Add Score
-    score += 10;
+    score += 5;
   }
   // Check for the boost
   if (gameBoard.objectExist(pacman.pos, OBJECT_TYPE.PILL)) {

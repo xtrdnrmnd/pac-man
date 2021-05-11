@@ -3,6 +3,20 @@ export const GRID_SIZE = 28;
 // The size of the cell
 export const CELL_SIZE = 34;
 
+// Game constants
+export const POWER_PILL_TIME = 5000; // ms
+export const GLOBAL_SPEED = 80; // ms
+
+// Music
+export const SOUND = new Audio('./audio/music.mp3');
+
+// All the elements from the HTML
+export const gameGrid = document.querySelector('#gameField');
+export const scoreTable = document.querySelector('#currentScore');
+export const startButton = document.querySelector('#startButton');
+export const musicSwitch = document.querySelector("#musicButton");
+export const lives = document.querySelector('#lives');
+
 // Kayboard actions
 export const DIRECTIONS = {
     ArrowLeft: {

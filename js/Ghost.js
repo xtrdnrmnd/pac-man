@@ -1,26 +1,21 @@
 import { DIRECTIONS, OBJECT_TYPE } from './setup.js';
 import { randomMovement } from './ghostmoves.js';
 
-class Ghost {
+import Character from './Character.js';
+
+class Ghost extends Character {
     constructor(speed = 5, startPos, movement, name) {
+        super(startPos, speed);
         this.name = name;
         this.movement = movement;
-        this.startPos = startPos;
-        this.pos = startPos;
         this.dir = DIRECTIONS.ArrowRight;
-        this.speed = speed;
-        this.timer = 0;
         this.isScared = false;
         this.rotation = false;
     }
 
     // Same as PacMan
     shouldMove() {
-        if (this.timer === this.speed) {
-            this.timer = 0;
-            return true;
-        }
-        this.timer++;
+        return super.shouldMove();
     }
 
     getMove(objectExist) {
@@ -43,7 +38,7 @@ class Ghost {
     }
 
     setNewPos(nextMovePos, direction) {
-        this.pos = nextMovePos;
+        return super.setNewPos(nextMovePos);
         this.dir = direction;
     }
 }

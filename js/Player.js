@@ -1,14 +1,13 @@
-import { OBJECT_TYPE, DIRECTIONS } from './setup.js';
+import { OBJECT_TYPE, DIRECTIONS, lives } from './setup.js';
 
-// Lives div from the index.html
-const lives = document.querySelector('#lives');
+import Character from './Character.js';
 
-class Player {
+
+
+class Player extends Character {
   constructor(speed, startPos) {
-    this.pos = startPos;
-    this.speed = speed;
+    super(startPos, speed);
     this.dir = null;
-    this.timer = 0;
     this.powerPill = false;
     this.rotation = true;
     // Every time Pacman collides with the ghost he loses 3 
@@ -21,17 +20,13 @@ class Player {
     if (!this.dir)
       return;
 
-    if (this.timer === this.speed) {
-      this.timer = 0;
-      return true;
-    }
-    this.timer++;
+    return super.shouldMove();
   }
 
   // Get the direction
   getMove(objectExist) {
     let nextMovePos = this.pos + this.dir.movement;
-    // Do we collide with a wall?
+    // Checks collisions
     if (
       objectExist(nextMovePos, OBJECT_TYPE.WALL) ||
       objectExist(nextMovePos, OBJECT_TYPE.GHOSTLAIR)
@@ -52,7 +47,7 @@ class Player {
 
   // Setter for the position value;
   setNewPos(nextMovePos) {
-    this.pos = nextMovePos;
+    return super.setNewPos(nextMovePos);
   }
 
   // Function responsible for key actions
