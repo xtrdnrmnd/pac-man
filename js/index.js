@@ -1,7 +1,7 @@
 // module import
 import { OBJECT_TYPE, SOUND, POWER_PILL_TIME, GLOBAL_SPEED, gameGrid, scoreTable, startButton, musicSwitch } from './setup.js';
 import { GRID } from './setup.js';
-
+import { randomMovement } from './ghostmoves.js';
 
 // Classes import
 import PlayingField from './PlayingField.js';
