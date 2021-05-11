@@ -1,49 +1,217 @@
+/*---------making sure the elements dont overflow the container-----------*/
+* {
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    background-color: black;
+  width: 100vw;
+  height: 100vw;
+  overflow: hidden;
+  background-image: url("./Obrazky/background.jpg");
 }
 
-.volume {
-    position: absolute;
-    left: 642px;
-    top: 618px;
-    width: 156px;
-    height: 149px;
+/*----------Container properties----------*/
+.container {
+  width: 100vw;
+  height: 100vw;
+  text-align: center;
 }
 
-#volume2 {
-    visibility: hidden;
+.container .button, #score-title, #life-title {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  color: #FFFF00;
+  font-family: 'Comic Sans MS';
+  font-size: 50pt;
+  display: block;
+  margin: auto;
+  white-space: nowrap;
+  transition: 0.3s;
+  text-shadow: 1px 1px 0 black, 1px 2px 0 black, 1px 3px 0 black, 1px 4px 0 black,
+    1px 5px 0 black, 1px 6px 0 black, 1px 7px 0 black, 1px 8px 0 black,
+    5px 13px 15px black;
 }
 
-#instruction {
-    visibility: hidden;
-    left: 200px;
-    top: 300px;
-    position: absolute;
-    background-color: #FFFF00;
-    z-index: 100;
+.container #musicButton {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-image: url("./Obrazky/Volume/volume-off.png");
 }
 
-#game {
-    visibility: hidden;
-    background-color: black;
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
+/*---------Button highlight when clicked----------*/
+.button:hover {
+  text-decoration: underline;
+  transition: 0.3s;
+  text-shadow: 1px -1px 0 black, 1px -2px 0 black, 1px -3px 0 black,
+  1px -4px 0 black, 1px -5px 0 black, 1px -6px 0 black, 1px -7px 0 black,
+  1px -8px 0 black, 5px -13px 15px black, 5px -13px 25px #808080;
 }
 
-#gameOver, #playAgain {
-    color: #FFFF00;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 95pt;
-    position: absolute;
-    left: 360px;
-    top: 60px;
+/*----------Instruction canvas properties-----------*/
+#instructions {
+  position:absolute;
+  top:300px;
+  left:220px;
+  z-index:100;
+  visibility: hidden;
+  background-color:black;    
 }
 
-#playAgain {
-    left: 510px;
-    top: 280px;
-    font-size: 70pt;
+/*-----------content properties for all the elements in the html file--------------*/
+#wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#gameField {
+  position: relative;
+  top: 60px;
+  display: inline-grid;
+  background: black;
+}
+
+/*-------Properties for score and lives titles---------*/
+#score-title {
+  position: absolute;
+  top: 0;
+  left: 20;
+  font-size: 30px;
+  visibility: hidden;
+}
+#life-title {
+  position: absolute;
+  top: 0;
+  left: 1335px;
+  font-size: 30px;
+  visibility: hidden;
+}
+
+/*Win or Lose*/
+.game-status {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #FFFF00;
+  font-family: 'Comic Sans MS';
+  font-size: 100pt;
+  height: 50px;
+  background: transparent;
+  text-shadow: 1px 1px 0 black, 1px 2px 0 black, 1px 3px 0 black, 1px 4px 0 black,
+    1px 5px 0 black, 1px 6px 0 black, 1px 7px 0 black, 1px 8px 0 black,
+    5px 13px 15px black;
+}
+
+#currentScore {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 150px;
+  height: 80px;
+  border: 5px red solid;
+  background: black;
+  margin-top: 20px;
+  color: #FFFF00;
+  font-family: 'Comic Sans MS';
+  font-size: 50px;
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+
+
+.square {
+  display: block;
+}
+
+.blank {
+  background: black;
+}
+
+.wall {
+  border: 3px solid red;
+}
+
+.dot {
+  background: white;
+  border: 13px solid black;
+  border-radius: 50%;
+}
+
+.pill {
+  background: purple;
+  border: 5px solid black;
+  border-radius: 50%;
+}
+
+.ghost {
+  position: relative;
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+}
+
+.scared {
+  background-image: url("Obrazky/scared/scaredGhost.png") !important;
+}
+
+.pinkGhost {
+  background-image: url("Obrazky/Pinkghost/pink-ghost.png");
+}
+
+.redGhost {
+  background-image: url("Obrazky/Redghost/red-ghost.png");
+}
+
+.blueGhost {
+  background-image: url("Obrazky/Blueghost/blue-ghost.png");
+}
+
+.orangeGhost {
+  background-image: url("Obrazky/Orangeghost/orange-ghost.png");
+}
+
+.pacman {
+  height: 10px;
+  width: 1px;
+  background: url("Obrazky/Pac-Man/movement3.png")
+    0px 0px;
+  animation: play 0.4s steps(4) infinite;
+  background-color: transparent;
+}
+
+@keyframes play {
+  90% {
+    background-position: -120px;
+  }
+}
+
+#lives {
+  position: absolute;
+  top: 60px;
+  left: 1350px;
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+}
+
+.live {
+  background-image: url("./Obrazky/cherry.png");
+  background-size: cover;
+  background-color: transparent;
+  width: 60px;
+  height: 60px;
 }
