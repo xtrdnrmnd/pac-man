@@ -1,7 +1,6 @@
 // module import
 import { OBJECT_TYPE, SOUND, POWER_PILL_TIME, GLOBAL_SPEED, gameGrid, scoreTable, startButton, musicSwitch } from './setup.js';
 import { GRID } from './setup.js';
-import { randomMovement } from './ghostmoves.js';
 
 // Classes import
 import PlayingField from './PlayingField.js';
@@ -82,10 +81,10 @@ function startGameCont() {
   );
 
   const ghosts = [
-    new Ghost(5, 188, randomMovement, OBJECT_TYPE.PINKGHOST),
-    new Ghost(4, 209, randomMovement, OBJECT_TYPE.REDGHOST),
-    new Ghost(3, 230, randomMovement, OBJECT_TYPE.BLUEGHOST),
-    new Ghost(2, 251, randomMovement, OBJECT_TYPE.ORANGEGHOST)
+    new Ghost(5, 188, OBJECT_TYPE.PINKGHOST),
+    new Ghost(4, 209, OBJECT_TYPE.REDGHOST),
+    new Ghost(3, 230, OBJECT_TYPE.BLUEGHOST),
+    new Ghost(2, 251, OBJECT_TYPE.ORANGEGHOST)
   ];
 
   // Gameloop
