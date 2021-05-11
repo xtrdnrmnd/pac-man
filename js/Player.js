@@ -3,7 +3,6 @@ import { OBJECT_TYPE, DIRECTIONS, lives } from './setup.js';
 import Character from './Character.js';
 
 
-
 class Player extends Character {
   constructor(speed, startPos) {
     super(startPos, speed);

@@ -1,6 +1,5 @@
 import { DIRECTIONS, OBJECT_TYPE } from './setup.js';
 
-
 import Character from './Character.js';
 
 class Ghost extends Character {
@@ -18,7 +17,6 @@ class Ghost extends Character {
     }
 
     getMove(objectExist) {
-        // Call move algoritm here
         const { nextMovePos, direction } = this.randomMovement(
             this.pos,
             this.dir,
